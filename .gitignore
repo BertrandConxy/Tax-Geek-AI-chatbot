@@ -1,3 +1,5 @@
 venv/
 chroma/
 .env
+vectordb
+.vscode/
