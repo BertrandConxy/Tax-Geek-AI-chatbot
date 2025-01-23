@@ -1,6 +1,6 @@
 # Tax Geek - AI chatbot
 
-This project is a Streamlit application designed to allow users to ask questions related to tax law. It leverages OpenAI embeddings to process and retrieve contextually relevant answers from a collection of tax law documents(RAG system).
+This project is a Langchain chatbot app designed to allow users to ask questions related to tax law. It leverages OpenAI embeddings to process and retrieve contextually relevant answers from a collection of tax law documents(RAG system).
 
 ## Features
 - **Vector embeddings:** Automatically process PDF files into embeddings using Chroma and OpenAI.

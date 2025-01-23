@@ -1,7 +1,6 @@
 from app import prompt_rag
 from langchain_openai import ChatOpenAI
 
-
 EVAL_PROMPT = """
 Expected Response: {expected_response}
 Actual Response: {actual_response}
@@ -17,7 +16,8 @@ def query_and_validate(question, expected_response):
 
     model = ChatOpenAI(model="gpt-4o-mini")
     evaluation_results_str = model.invoke(prompt)
-    evaluation_results_str_cleaned = evaluation_results_str.strip().lower()
+    print(f"Evaluation Results: {evaluation_results_str.content}")
+    evaluation_results_str_cleaned = evaluation_results_str.content.lower().strip()
 
     if "true" in evaluation_results_str_cleaned:
         # Print response in Green if it is correct.
@@ -38,10 +38,8 @@ def test_PAYE():
         expected_response="the employee should pay 54,000 Rwandan francs in tax on their 300,000 FRW monthly salary.",
     )
 
-def test_tax_due_date():
+def test_cit_small_businesses():
     assert query_and_validate(
-        question="what is the due date to pay tax",
-        expected_response="The due date to pay tax is within the prescribed time limit provided by law, which is typically 15 days after the tax declaration period arrives.",
+        question="how much is corporate income tax for small businesses",
+        expected_response="Small businesses pay a lump sum tax of three percent (3%) of their annual turnover.",
     )
-
-
