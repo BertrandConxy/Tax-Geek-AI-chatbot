@@ -1,42 +1,83 @@
-# Tax Geek - AI chatbot
+# Tax Geek - AI Chatbot
 
-This project is a Langchain chatbot app designed to allow users to ask questions related to tax law. It leverages OpenAI embeddings to process and retrieve contextually relevant answers from a collection of tax law documents(RAG system).
+This project is a LangChain-powered chatbot app designed to allow users to ask questions related to tax law. It leverages OpenAI embeddings to process and retrieve contextually relevant answers from a collection of tax law documents using a Retrieval-Augmented Generation (RAG) system. Additionally, LangSmith is used to monitor and debug every user interaction, and the system includes pytest tests for ensuring reliable performance.
 
 ## Features
-- **Vector embeddings:** Automatically process PDF files into embeddings using Chroma and OpenAI.
-- **Question-Answering:** Ask context-specific questions, and get relevant answers based on the document embeddings.
-- **Interactive Interface:** A user-friendly interface built with Streamlit.
+- **RAG System:** Combines retrieval from document embeddings and OpenAI's LLM to provide accurate and context-specific answers.
+- **Vector Embeddings:** Automatically processes and stores PDF files into embeddings using FAISS and OpenAI.
+- **Interactive UI:** User-friendly interface built with Streamlit for seamless interaction.
+- **LangSmith Monitoring:** Tracks and analyzes all interactions to improve the chatbot's performance and reliability.
+- **Test Coverage:** Pytest tests ensure the RAG system functions as expected and retrieves accurate results.
 
 ## Prerequisites
 Before running the application, ensure you have the following:
+
 1. Python 3.8 or later
 2. Required Python libraries:
-   - Streamlit
-   - OpenAI
-   - Chroma
-   - PyPDF2
-   - LangChain
-  
-Install the dependencies using:
+   - `streamlit`
+   - `faiss-cpu`
+   - `pypdf`
+   - `langchain`
+   - `langchain-openai`
+   - `pytest`
+   - `langsmith`
 
-```bash
-pip install -r requirements.txt
-```
 
-## Folder structure
-- ./documentations:  Place your PDF documents here.
-- app.py: Main application file.
+
+## Folder Structure
+- **`./documentations`**: Place your tax-related PDF documents here.
+- **`app.py`**: Main application file.
+- **`create_vectordb.py`**: Creates vectordb with document embeddings and save the vectordb locally.
+- **`test_rag.py`**: Contains pytest tests for the RAG system.
 
 ## How to Run
 
-1.
-```bash
-git clone https://github.com/yourusername/tax-law-qa.git
-cd tax-law-qa
-```
+1. Clone the repository:
 
-2. Place the tax-related PDF documents in the documentations folder.
+   ```bash
+   git clone https://github.com/BertrandConxy/Tax-Geek-AI-chatbot.git
+   cd Tax-Geek-AI-chatbot
+   ```
+2. Create virtual env
+   ```bash
+   python -m venv venv
+   ```
 
-3. ```bash
+3. Install the dependencies using:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Ensure tax-related PDF documents are in the `documentations` folder.
+5. Create `.env` file for credentials
+   ```
+   OPENAI_API_KEY
+   LANGSMITH_TRACING=True
+   LANGSMITH_ENDPOINT
+   LANGSMITH_API_KEY
+   LANGSMITH_PROJECT
+   ```
+6. Run `create_vectordb.py` to create vector embeddings for the documents and store the db locally.
+   ```
+   python create_vectordb.py
+   ```
+7. Run the Streamlit app:
+
+   ```bash
    streamlit run app.py
    ```
+## Demo
+![Demo](demo_1.gif)
+![Demo](demo_2.png)
+## Monitoring with LangSmith
+LangSmith is integrated into this project to monitor and analyze chatbot interactions. This ensures the app remains robust and user-friendly. To configure LangSmith:
+
+1. Set up your LangSmith account and API key.
+2. Ensure the `LANGSMITH_API_KEY` is added to your environment variables.
+
+## Testing the RAG System
+Pytest tests are included to validate the functionality of the RAG system. To run the tests:
+
+```bash
+pytest tests_rag.py
+```
