@@ -53,7 +53,6 @@ Before running the application, ensure you have the following:
    ```
    OPENAI_API_KEY
    LANGSMITH_TRACING=True
-   LANGSMITH_ENDPOINT
    LANGSMITH_API_KEY
    LANGSMITH_PROJECT
    ```
