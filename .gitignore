@@ -1,6 +1,9 @@
 venv/
 chroma/
 .env
+.env.local
 vectordb
 .vscode/
 __pycache__/
+.*
+./

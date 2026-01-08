@@ -26,6 +26,12 @@ def prompt_rag(question):
     response = rag_chain.invoke({"input": question})
     return response
 
+def get_response(question):
+    response = prompt_rag(question)
+    answer = response['answer']
+    context = [doc.page_content for doc in response['context']]
+    return answer, context
+
 def main():
     st.title("Tax Geek Chatbot")
 
@@ -41,4 +47,5 @@ def main():
                 st.write("------------------------------------")
 
 if __name__ == "__main__":
-    main()
+    response = get_answer("What is PAYE?")
+    print(response)
