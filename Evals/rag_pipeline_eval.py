@@ -24,9 +24,12 @@ context_relevancy_metric = ContextualRelevancyMetric(threshold=0.1)
 
 metrics = [relevancy_metric, faithfulness_metric, context_relevancy_metric]
 
-# 2. Pull from Confident AI
-dataset = EvaluationDataset()
-dataset.pull(alias="paye-questions-dataset")
+## 2. Pull from Confident AI                                                                                                                                              │
+# dataset = EvaluationDataset()                                                                                                                                            │
+# dataset.pull(alias="paye-questions-dataset")
+
+# 2. Use local goldens
+from golden_dataset import dataset
 
 # 3. Create test cases
 for golden in dataset.goldens:
